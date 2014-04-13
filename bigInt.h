@@ -58,7 +58,8 @@ public:
 	bool operator<=(const bigInt& B);
 	bool operator==(const bigInt& B);
 	bool operator!=(const bigInt& B);
-
+	
+	char *__str__();
 	friend std::ostream& operator<<(std::ostream &out, bigInt A);
 	friend std::istream& operator>>(std::istream &is, bigInt &A);
 

@@ -378,6 +378,11 @@ bool bigInt::operator!=(const bigInt& B)
 }
 
 
+char * bigInt::__str__()
+{
+		return getString();
+}
+
 std::ostream& operator<<(std::ostream &out, bigInt A)
 {
 	char* str = A.getString();

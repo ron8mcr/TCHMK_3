@@ -9,20 +9,21 @@ def noArguments():
 	a = bigInt.bigInt(raw_input())
 	print "Enter B:",
 	b = bigInt.bigInt(raw_input())
+	print "A =", a
 
-	print "A + B =", a.getString(), "+", b.getString(), "=", (a + b).getString()
-	print "A - B =", a.getString(), "-", b.getString(), "=", (a - b).getString()
-	print "A * B =", a.getString(), "*", b.getString(), "=", (a * b).getString()
+	print "A + B =", a, "+", b, "=", a + b
+	print "A - B =", a, "-", b, "=", a - b
+	print "A * B =", a, "*", b, "=", a * b
 
 	if b != bigInt.bigInt("0"):
-		print "A / B =", a.getString(), "/", b.getString(), "=", (a / b).getString()
-		print "A % B =", a.getString(), "%", b.getString(), "=", (a % b).getString()
+		print "A / B =", a, "/", b, "=", a / b
+		print "A % B =", a, "%", b, "=", a % b
 	else:
 		print "Division by zero"
 	
 	print "Enter modulus for pow: ",
 	mod = bigInt.bigInt(raw_input())
-	print "A ^ B mod N =", a.getString(), "^", b.getString(), "mod", mod.getString(),  "=", (bigInt.pow(a, b, mod)).getString()
+	print "A ^ B mod N =", a, "^", b, "mod", mod,  "=", bigInt.pow(a, b, mod)
 
 	print "That's all"
 	

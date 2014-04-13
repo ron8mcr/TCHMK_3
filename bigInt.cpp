@@ -100,13 +100,13 @@ bigInt::~bigInt()
 
 char* bigInt::getString()
 {// возвращает строку, в которой записано число в 10-ричной системе счисления
-
 	bigInt thisNumber = *this;
 	thisNumber._sign = 0;
 	char* strBuffer = new char[MAX_10_LEN]();	// здесь закралось ограничение
 												// на максимальную длину числа в 10-чной записи
 	char* pString = &(strBuffer[MAX_10_LEN - 1]); // указатель на текущую позицию для записи числа
 	bigInt b1000000000 = 1000000000;
+	
 	char splStr[10];
 	do
 	{
@@ -208,6 +208,11 @@ bool bigInt::getFromBinFile(const char* filename)
 	fileSize -= sizeof(_sign);
 	if (_size) delete[] _digits;
 	_size = fileSize / sizeof(digit);
+	if (!_size)
+		{
+			_setSize(1);
+			return false;
+		}
 	_digits = new digit[_size]();
 	len = fread(_digits, sizeof(digit), _size, pfSource);
 	fclose(pfSource);

@@ -6,9 +6,9 @@ def noArguments():
 	print "Perform all kind of operations with entered numbers."
 	
 	print "Enter A:",
-	a = bigInt.bigInt(input())
+	a = bigInt.bigInt(raw_input())
 	print "Enter B:",
-	b = bigInt.bigInt(input())
+	b = bigInt.bigInt(raw_input())
 
 	print "A + B =", a.getString(), "+", b.getString(), "=", (a + b).getString()
 	print "A - B =", a.getString(), "-", b.getString(), "=", (a - b).getString()
@@ -21,7 +21,7 @@ def noArguments():
 		print "Division by zero"
 	
 	print "Enter modulus for pow: ",
-	mod = bigInt.bigInt(input())
+	mod = bigInt.bigInt(raw_input())
 	print "A ^ B mod N =", a.getString(), "^", b.getString(), "mod", mod.getString(),  "=", (bigInt.pow(a, b, mod)).getString()
 
 	print "That's all"

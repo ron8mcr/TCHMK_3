@@ -9,7 +9,6 @@ def noArguments():
 	a = bigInt.bigInt(raw_input())
 	print "Enter B:",
 	b = bigInt.bigInt(raw_input())
-	print "A =", a
 
 	print "A + B =", a, "+", b, "=", a + b
 	print "A - B =", a, "-", b, "=", a - b
@@ -43,102 +42,71 @@ def getFromFiles (fileA, fileB, fileMod, binary):
 	modulus = bigInt.bigInt()
 	if (binary):
 		if not A.getFromBinFile(fileA):
-			print "Can't get number from ", fileA 
+			print "Can't get number from:", fileA 
 			return False, A, B, modulus
 		if not B.getFromBinFile(fileB):
-			print "Can't get number from ", fileB 
+			print "Can't get number from:", fileB 
 			return False, A, B, modulus
 		if fileMod:
 			if not modulus.getFromBinFile(fileMod):
-				print "Can't get number from ", fileMod 
+				print "Can't get number from:", fileMod 
 				return False, A, B, modulus
 	else:
 		if not A.getFromTextFile(fileA):
-			print "Can't get number from ", fileA 
+			print "Can't get number from:", fileA 
 			return False, A, B, modulus
 		if not B.getFromTextFile(fileB):
-			print "Can't get number from ", fileB 
+			print "Can't get number from:", fileB 
 			return False, A, B, modulus
 		if fileMod:
 			if not modulus.getFromTextFile(fileMod):
-				print "Can't get number from ", fileMod 
+				print "Can't get number from:", fileMod 
 				return False, A, B, modulus
 	return True, A, B, modulus
 	
 def process(A, B, modulus, operation):
-	res = bigInt.bigInt()
 	zero = bigInt.bigInt("0")
+	res = zero
+	
+	if (modulus < zero):
+		print "Negative modulus!"
+		return False, res
+		
+	if operation == '^':
+		res = bigInt.pow(A, B, modulus)
+		return True, res
+			
 	if (modulus > zero):
-		if operation == '+':
-			A %= modulus
-			B %= modulus
-			res = A + B
+		A %= modulus
+		B %= modulus
+	
+	if operation == '+':
+		res = A + B
+
+	elif operation == '-':
+		res = A - B
+
+	elif operation == '*':
+		res = A * B
+
+	elif operation == '/':
+		if B == zero:
+			print "Division by zero"
+			return False, res
+		res = A / B
+
+	elif operation == '%':
+		if (B == zero):
+			print "Division by zero"
+			return False, res
+		res = A % B
+	
+	if (modulus > zero):
 			res %= modulus
-			return True, res
-
-		if operation == '-':
-			A %= modulus
-			B %= modulus
-			res = A - B
-			res %= modulus
-			return True, res
-
-		if operation == '*':
-			A %= modulus
-			B %= modulus
-			res = A * B
-			res %= modulus
-			return True, res
-
-		if operation == '/':
-			if B == zero:
-				print "Division by zero"
-				return False, res
-			res = A / B
-			res %= modulus
-			return True, res
-
-		if operation == '%':
-			if (B == zero):
-				print "Division by zero"
-				return False, res
-			res = A % B
-			res %= modulus
-			return True, res
-
-		if operation == '^':
-			res = bigInt.pow(A, B, modulus)
-			return True, res
-	else:
-		if operation == '+':
-			res = A + B
-			return True, res
-
-		if operation == '-':
-			res = A - B
-			return True, res
-
-		if operation == '*':
-			res = A * B
-			return True, res
-
-		if operation == '/':
-			if B == zero:
-				print "Division by zero"
-				return False, res
-			res = A / B
-			return True, res
-
-		if operation == '%':
-			if (B == zero):
-				print "Division by zero"
-				return False, res
-			res = A % B
-			return True, res
-
-		if operation == '^':
-			res = A ^ B
-			return True, res
+			while (res < zero):
+				res += modulus
+				
+	return True, res
 			
 def saveRes(fileRes, binary, res):
 	if binary:

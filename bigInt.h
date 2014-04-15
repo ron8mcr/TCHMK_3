@@ -47,6 +47,22 @@ public:
 	bigInt operator/=(const bigInt& right);
 	bigInt operator%=(const bigInt& right);
 
+
+	// special for Python
+	bigInt operator+(const long long int right) const;
+	bigInt operator-(const long long int right) const;
+	bigInt operator*(const long long int right) const;
+	bigInt operator/(const long long int right) const;
+	bigInt operator%(const long long int right) const;
+	bigInt operator^(const long long int right) const;
+
+	bigInt operator+=(const long long int right);
+	bigInt operator-=(const long long int right);
+	bigInt operator*=(const long long int right);
+	bigInt operator/=(const long long int right);
+	bigInt operator%=(const long long int right);
+
+
 	bigInt operator++();
 	bigInt operator++(int);
 	bigInt operator--();

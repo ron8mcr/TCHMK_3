@@ -320,6 +320,70 @@ bigInt bigInt::operator%=(const bigInt& right)
 }
 
 
+
+bigInt bigInt::operator+(const long long int right) const
+{
+	return *this + (bigInt) right;
+}
+
+bigInt bigInt::operator-(const long long int right) const
+{
+	return *this - (bigInt) right;
+}
+
+bigInt bigInt::operator*(const long long int right) const
+{
+	return *this * (bigInt) right;
+}
+
+bigInt bigInt::operator/(const long long int right) const
+{
+	return *this / (bigInt) right;
+}
+
+bigInt bigInt::operator%(const long long int right) const
+{
+	return *this % (bigInt) right;
+}
+
+bigInt bigInt::operator^(const long long int right) const
+{
+	return *this ^ (bigInt) right;
+}
+
+
+bigInt bigInt::operator+=(const long long int right)
+{
+	*this = bigInt(*this + (bigInt) right);
+	return *this;
+}
+
+bigInt bigInt::operator-=(const long long int right)
+{
+	*this = bigInt(*this - (bigInt) right);
+	return *this;
+}
+
+bigInt bigInt::operator*=(const long long int right)
+{
+	*this = bigInt(*this * (bigInt) right);
+	return *this;
+}
+
+bigInt bigInt::operator/=(const long long int right)
+{
+	*this = bigInt(*this / (bigInt) right);
+	return *this;
+}
+
+bigInt bigInt::operator%=(const long long int right)
+{
+	*this = bigInt(*this % (bigInt) right);
+	return *this;
+}
+
+
+
 bigInt bigInt::operator++()
 {
 	bigInt oldVal = *this;

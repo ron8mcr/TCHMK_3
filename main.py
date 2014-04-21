@@ -19,10 +19,10 @@ isProcess, res = funcs.process(A, B, modulus, arguments.operation)
 if not isProcess:
 	sys.exit(-1)
 	
-print "A = ", A.getString()
-print "B = ", B.getString()
-print "M = ", modulus.getString()
-print "R = ", res.getString()
+print "A = ", A
+print "B = ", B
+print "M = ", modulus
+print "R = ", res
 
 isWrite = funcs.saveRes(arguments.result_filename, arguments.b, res)
 if not isWrite:

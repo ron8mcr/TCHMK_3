@@ -320,6 +320,37 @@ bigInt bigInt::operator%=(const bigInt& right)
 }
 
 
+bool bigInt::operator>(const bigInt& B)
+{
+	return this->_cmp(B) > 0;
+}
+
+bool bigInt::operator>=(const bigInt& B)
+{
+	return this->_cmp(B) >= 0;
+}
+
+bool bigInt::operator<(const bigInt& B)
+{
+	return this->_cmp(B) < 0;
+}
+
+bool bigInt::operator<=(const bigInt& B)
+{
+	return this->_cmp(B) <= 0;
+}
+
+bool bigInt::operator==(const bigInt& B)
+{
+	return this->_cmp(B) == 0;
+}
+
+bool bigInt::operator!=(const bigInt& B)
+{
+	return this->_cmp(B) != 0;
+}
+
+
 
 bigInt bigInt::operator+(const long long int right) const
 {
@@ -383,6 +414,37 @@ bigInt bigInt::operator%=(const long long int right)
 }
 
 
+bool bigInt::operator>(const long long int B)
+{
+	return this->_cmp(B) > 0;
+}
+
+bool bigInt::operator>=(const long long int B)
+{
+	return this->_cmp(B) >= 0;
+}
+
+bool bigInt::operator<(const long long int B)
+{
+	return this->_cmp(B) < 0;
+}
+
+bool bigInt::operator<=(const long long int B)
+{
+	return this->_cmp(B) <= 0;
+}
+
+bool bigInt::operator==(const long long int B)
+{
+	return this->_cmp(B) == 0;
+}
+
+bool bigInt::operator!=(const long long int B)
+{
+	return this->_cmp(B) != 0;
+}
+
+
 
 bigInt bigInt::operator++()
 {
@@ -411,38 +473,12 @@ bigInt bigInt::operator--(int)
 }
 
 
-bool bigInt::operator>(const bigInt& B)
-{
-	return this->_cmp(B) > 0;
-}
-
-bool bigInt::operator>=(const bigInt& B)
-{
-	return this->_cmp(B) >= 0;
-}
-
-bool bigInt::operator<(const bigInt& B)
-{
-	return this->_cmp(B) < 0;
-}
-
-bool bigInt::operator<=(const bigInt& B)
-{
-	return this->_cmp(B) <= 0;
-}
-
-bool bigInt::operator==(const bigInt& B)
-{
-	return this->_cmp(B) == 0;
-}
-
-bool bigInt::operator!=(const bigInt& B)
-{
-	return this->_cmp(B) != 0;
-}
-
-
 char * bigInt::__str__()
+{
+		return getString();
+}
+
+char * bigInt::__repr__()
 {
 		return getString();
 }
@@ -955,7 +991,10 @@ const bigInt _divividing(const bigInt& A, const bigInt& B, bigInt &remainder)
 		res._setSize(1);
 		res[0] = remainder[0] / divider[0];
 		remainder[0] = remainder[0] % divider[0];
+		remainder._sign = (!A._sign && B._sign) || (A._sign && !B._sign);
 		res._sign = (!A._sign && B._sign) || (A._sign && !B._sign);
+		res._delLeadZeros();
+		remainder._delLeadZeros();
 		return res;
 	}
 
@@ -980,7 +1019,7 @@ const bigInt _divividing(const bigInt& A, const bigInt& B, bigInt &remainder)
 		res._delLeadZeros();
 		return res;
 	}
-	return _divColumn(A, B, remainder);
+	//return _divColumn(A, B, remainder);
 	return _divBinSearch(A, B, remainder); // 2 варианта деления, но _divColumn должен работать быстрее
 }
 

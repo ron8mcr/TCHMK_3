@@ -46,8 +46,14 @@ public:
 	bigInt operator*=(const bigInt& right);
 	bigInt operator/=(const bigInt& right);
 	bigInt operator%=(const bigInt& right);
-
-
+	
+	bool operator>(const bigInt& B);
+	bool operator>=(const bigInt& B);
+	bool operator<(const bigInt& B);
+	bool operator<=(const bigInt& B);
+	bool operator==(const bigInt& B);
+	bool operator!=(const bigInt& B);
+	
 	// special for Python
 	bigInt operator+(const long long int right) const;
 	bigInt operator-(const long long int right) const;
@@ -61,21 +67,22 @@ public:
 	bigInt operator*=(const long long int right);
 	bigInt operator/=(const long long int right);
 	bigInt operator%=(const long long int right);
-
-
+	
+	bool operator>(const long long int B);
+	bool operator>=(const long long int B);
+	bool operator<(const long long int B);
+	bool operator<=(const long long int B);
+	bool operator==(const long long int B);
+	bool operator!=(const long long int B);
+	
+	
 	bigInt operator++();
 	bigInt operator++(int);
 	bigInt operator--();
 	bigInt operator--(int);
 	
-	bool operator>(const bigInt& B);
-	bool operator>=(const bigInt& B);
-	bool operator<(const bigInt& B);
-	bool operator<=(const bigInt& B);
-	bool operator==(const bigInt& B);
-	bool operator!=(const bigInt& B);
-	
 	char *__str__();
+	char *__repr__();
 	friend std::ostream& operator<<(std::ostream &out, bigInt A);
 	friend std::istream& operator>>(std::istream &is, bigInt &A);
 
